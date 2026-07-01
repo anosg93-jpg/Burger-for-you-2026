@@ -1,0 +1,20 @@
+{
+  "name": "Burger for you",
+  "short_name": "Burger4U",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#e0e0e5",
+  "theme_color": "#d35400",
+  "icons": [
+    {
+      "src": "./images/logooo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    },
+    {
+      "src": "./images/logooo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ]
+}
