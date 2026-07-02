@@ -1,4 +1,4 @@
-const CACHE_NAME = 'burger-v1'; // قم بتغيير الرقم v1 إلى v2 عند عمل تحديث كبير للكود
+const CACHE_NAME = 'burger-v2'; // قم بتغيير الرقم v1 إلى v2 عند عمل تحديث كبير للكود
 
 self.addEventListener('install', (event) => {
   self.skipWaiting(); // لتنشيط التحديث فوراً

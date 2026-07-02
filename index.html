@@ -8,7 +8,6 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Apple PWA Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Burger for you">
@@ -20,8 +19,8 @@
             --bg: #e0e0e5; 
             --main-text: #1c1c1e;
             --desc-text: #636366;
-            --accent: #d35400;
-            --address-tag: #0a84ff;
+            --accent: #e1306c; /* تم تعديل اللون ليتناسب مع اللوجو */
+            --address-tag: #e1306c;
             --white: #f2f2f7; 
             --glass: rgba(242, 242, 247, 0.8);
             --success: #34c759;
@@ -361,17 +360,25 @@
         function sendToWA() {
             const n = document.getElementById('uName').value, p = document.getElementById('uPhone').value, a = document.getElementById('uAddr').value;
             if(!n || !p || !a) return alert("يرجى إكمال البيانات");
-            let msg = `طلب جديد\nالاسم: ${n}\nالهاتف: ${p}\nالعنوان: ${a}\nالطلبات: ` + cart.map(i => i.name).join(', ');
+            
+            let total = 0;
+            const itemsDetails = cart.map(i => {
+                total += parseFloat(i.price);
+                return `• ${i.name} - ${i.price} ج.م`;
+            }).join('\n');
+
+            let msg = `🔥 *طلب جديد من مطعم Burger for you* 🔥\n\n` +
+                      `👤 *الاسم:* ${n}\n` +
+                      `📱 *الهاتف:* ${p}\n` +
+                      `📍 *العنوان:* ${a}\n\n` +
+                      `📋 *تفاصيل الطلبات:*\n${itemsDetails}\n\n` +
+                      `💰 *المجموع الكلي:* ${total} ج.م\n\n` +
+                      `شكراً لطلبكم من مطعم Burger for you 🍔`;
+
             window.open(`https://wa.me/201036362609?text=${encodeURIComponent(msg)}`);
         }
 
         loadMenu();
-
-        // كود تفعيل التحديث التلقائي للـ PWA
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-            .then(() => console.log('Service Worker Registered'));
-        }
     </script>
 </body>
 </html>
